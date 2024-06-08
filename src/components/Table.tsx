@@ -1,18 +1,22 @@
 import * as React from "react";
-import { HEADER, content } from "../constants/content";
+import { HEADER } from "../constants/content";
 import {
   AMOUNT_KEY,
   DESCRIPTION_KEY,
+  ITablesWithIds,
   NAME_KEY,
+  PRISE_KEY,
   SIZE_KEY,
   TOTAL_KEY,
 } from "../types";
+import { SizeSelect } from "./SizeSelect";
+import { AmountInput } from "./AmountInput";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export const Table = () => {
+export const Table = ({ tables }: { tables: ITablesWithIds }) => {
   return (
     <table className="min-w-full border-separate border-spacing-0">
       <thead>
@@ -55,9 +59,9 @@ export const Table = () => {
           </th>
         </tr>
       </thead>
-      {content.map((table) => {
+      {tables.map((table, index) => {
         return (
-          <tbody>
+          <tbody key={index}>
             <tr className="border-t border-gray-200">
               <th
                 colSpan={6}
@@ -67,70 +71,80 @@ export const Table = () => {
                 {table.title}
               </th>
             </tr>
-            {table.models.map((model, index) => (
-              <tr key={index}>
-                <td
-                  className={classNames(
-                    index !== table.models.length - 1
-                      ? "border-b border-gray-200 w-32"
-                      : "",
-                    "whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-32"
-                  )}
-                >
-                  {model[NAME_KEY]}
-                </td>
-                <td
-                  className={classNames(
-                    index !== table.models.length - 1
-                      ? "border-b border-gray-200 text-wrap max-w-64"
-                      : "",
-                    "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell text-wrap max-w-64"
-                  )}
-                >
-                  {model[DESCRIPTION_KEY]}
-                </td>
-                <td
-                  className={classNames(
-                    index !== table.models.length - 1
-                      ? "border-b border-gray-200"
-                      : "",
-                    "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"
-                  )}
-                >
-                  {"SIZE SELECT"}
-                </td>
-                <td
-                  className={classNames(
-                    index !== table.models.length - 1
-                      ? "border-b border-gray-200"
-                      : "",
-                    "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                  )}
-                >
-                  {"AMOUNT INPUT"}
-                </td>
-                <td
-                  className={classNames(
-                    index !== table.models.length - 1
-                      ? "border-b border-gray-200"
-                      : "",
-                    "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                  )}
-                >
-                  {"TOTAL"}
-                </td>
-                <td
-                  className={classNames(
-                    index !== table.models.length - 1
-                      ? "border-b border-gray-200"
-                      : "",
-                    "relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-8 lg:pr-8"
-                  )}
-                >
-                  ОЧИСТИТЬ
-                </td>
-              </tr>
-            ))}
+            {table.models.map((model, index) => {
+              const isSizeAvailable = Object.keys(model[PRISE_KEY]).length > 1;
+
+              return (
+                <tr key={index}>
+                  <td
+                    className={classNames(
+                      index !== table.models.length - 1
+                        ? "border-b border-gray-200 w-32"
+                        : "",
+                      "whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-32"
+                    )}
+                  >
+                    {model[NAME_KEY]}
+                  </td>
+                  <td
+                    className={classNames(
+                      index !== table.models.length - 1
+                        ? "border-b border-gray-200 text-wrap max-w-64"
+                        : "",
+                      "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell text-wrap max-w-64"
+                    )}
+                  >
+                    {model[DESCRIPTION_KEY]}
+                  </td>
+                  <td
+                    className={classNames(
+                      index !== table.models.length - 1
+                        ? "border-b border-gray-200 w-40"
+                        : "",
+                      "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell w-40"
+                    )}
+                  >
+                    {isSizeAvailable && (
+                      <SizeSelect
+                        index={0}
+                        sizes={model[PRISE_KEY]}
+                        id={model.id}
+                      />
+                    )}
+                  </td>
+                  <td
+                    className={classNames(
+                      index !== table.models.length - 1
+                        ? "border-b border-gray-200"
+                        : "",
+                      "whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-40"
+                    )}
+                  >
+                    <AmountInput id={model.id} index={index} />
+                  </td>
+                  <td
+                    className={classNames(
+                      index !== table.models.length - 1
+                        ? "border-b border-gray-200"
+                        : "",
+                      "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                    )}
+                  >
+                    {"TOTAL"}
+                  </td>
+                  <td
+                    className={classNames(
+                      index !== table.models.length - 1
+                        ? "border-b border-gray-200"
+                        : "",
+                      "relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-8 lg:pr-8"
+                    )}
+                  >
+                    ОЧИСТИТЬ
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         );
       })}
