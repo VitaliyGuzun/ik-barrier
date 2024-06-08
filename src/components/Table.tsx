@@ -1,20 +1,13 @@
-import * as React from "react";
 import { HEADER } from "../constants/content";
 import {
   AMOUNT_KEY,
   DESCRIPTION_KEY,
   ITablesWithIds,
   NAME_KEY,
-  PRISE_KEY,
   SIZE_KEY,
   TOTAL_KEY,
 } from "../types";
-import { SizeSelect } from "./SizeSelect";
-import { AmountInput } from "./AmountInput";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import { Row } from "./Row";
 
 export const Table = ({ tables }: { tables: ITablesWithIds }) => {
   return (
@@ -55,7 +48,7 @@ export const Table = ({ tables }: { tables: ITablesWithIds }) => {
             scope="col"
             className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-3 pr-4 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8"
           >
-            <span className="sr-only">Edit</span>
+            ИТОГО
           </th>
         </tr>
       </thead>
@@ -72,77 +65,10 @@ export const Table = ({ tables }: { tables: ITablesWithIds }) => {
               </th>
             </tr>
             {table.models.map((model, index) => {
-              const isSizeAvailable = Object.keys(model[PRISE_KEY]).length > 1;
+              const isLast = index !== table.models.length - 1;
 
               return (
-                <tr key={index}>
-                  <td
-                    className={classNames(
-                      index !== table.models.length - 1
-                        ? "border-b border-gray-200 w-32"
-                        : "",
-                      "whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-32"
-                    )}
-                  >
-                    {model[NAME_KEY]}
-                  </td>
-                  <td
-                    className={classNames(
-                      index !== table.models.length - 1
-                        ? "border-b border-gray-200 text-wrap max-w-64"
-                        : "",
-                      "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell text-wrap max-w-64"
-                    )}
-                  >
-                    {model[DESCRIPTION_KEY]}
-                  </td>
-                  <td
-                    className={classNames(
-                      index !== table.models.length - 1
-                        ? "border-b border-gray-200 w-40"
-                        : "",
-                      "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell w-40"
-                    )}
-                  >
-                    {isSizeAvailable && (
-                      <SizeSelect
-                        index={0}
-                        sizes={model[PRISE_KEY]}
-                        id={model.id}
-                      />
-                    )}
-                  </td>
-                  <td
-                    className={classNames(
-                      index !== table.models.length - 1
-                        ? "border-b border-gray-200"
-                        : "",
-                      "whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-40"
-                    )}
-                  >
-                    <AmountInput id={model.id} index={index} />
-                  </td>
-                  <td
-                    className={classNames(
-                      index !== table.models.length - 1
-                        ? "border-b border-gray-200"
-                        : "",
-                      "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    )}
-                  >
-                    {"TOTAL"}
-                  </td>
-                  <td
-                    className={classNames(
-                      index !== table.models.length - 1
-                        ? "border-b border-gray-200"
-                        : "",
-                      "relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-8 lg:pr-8"
-                    )}
-                  >
-                    ОЧИСТИТЬ
-                  </td>
-                </tr>
+                <Row model={model} key={index} index={index} isLast={isLast} />
               );
             })}
           </tbody>

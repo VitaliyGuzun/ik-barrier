@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { Table } from "./components/Table";
 import { useAmounts } from "./hooks/useAmounts";
 import { usePrises } from "./hooks/usePrises";
@@ -11,7 +11,7 @@ import {
 import "./App.css";
 
 export default function Example() {
-  const [valueSizes, setValueSizes] = React.useState(defaultValueSizes);
+  const [valueSizes, setValueSizes] = useState(defaultValueSizes);
   const [valueAmounts, setValueAmounts] = useAmounts(defaultValueAmounts);
   const valuePrises = usePrises(valueSizes, valueAmounts);
 
