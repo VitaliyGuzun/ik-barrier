@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ik-barrier/static/css/main.983ac8ce.css",
+    "main.js": "/ik-barrier/static/js/main.b67eeafb.js",
+    "static/js/453.ae1aa110.chunk.js": "/ik-barrier/static/js/453.ae1aa110.chunk.js",
+    "index.html": "/ik-barrier/index.html",
+    "main.983ac8ce.css.map": "/ik-barrier/static/css/main.983ac8ce.css.map",
+    "main.b67eeafb.js.map": "/ik-barrier/static/js/main.b67eeafb.js.map",
+    "453.ae1aa110.chunk.js.map": "/ik-barrier/static/js/453.ae1aa110.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.983ac8ce.css",
+    "static/js/main.b67eeafb.js"
+  ]
+}
