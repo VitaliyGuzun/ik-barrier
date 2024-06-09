@@ -11,11 +11,10 @@ function classNames(...classes: string[]) {
 
 interface IRow {
   model: IModelWithId
-  index: number
   isLast: boolean
 }
 
-export const Row = ({model, index, isLast}: IRow) => {
+export const Row = ({model, isLast}: IRow) => {
   const isSizeAvailable = Object.keys(model[PRISE_KEY]).length > 1
   const context = useContext(TableContext)
   const valueSizes = context.valueSizes[model.id]
@@ -34,8 +33,8 @@ export const Row = ({model, index, isLast}: IRow) => {
       </td>
       <td
         className={classNames(
-          isLast ? 'border-b border-gray-200 text-wrap max-w-6433' : '',
-          'hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell text-wrap max-w-6433',
+          isLast ? 'border-b border-gray-200 text-wrap max-w-40' : '',
+          'hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell text-wrap max-w-40',
         )}
       >
         {model[DESCRIPTION_KEY]}
@@ -75,8 +74,8 @@ export const Row = ({model, index, isLast}: IRow) => {
       </td>
       <td
         className={classNames(
-          isLast ? 'border-b border-gray-200 w-1/4' : '',
-          'whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-1/4',
+          isLast ? 'border-b border-gray-200 w-2/6' : '',
+          'whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-2/6',
         )}
         colSpan={2}
       >
@@ -89,7 +88,9 @@ export const Row = ({model, index, isLast}: IRow) => {
                 key={index}
                 className="flex w-full justify-between h-9 items-center"
               >
-                <div>{total ? formatPrice(total) : ''}</div>
+                <div className="w-32 text-right">
+                  {total ? formatPrice(total) : ''}
+                </div>
                 <div>
                   {total > 0 && (
                     <button
@@ -109,7 +110,7 @@ export const Row = ({model, index, isLast}: IRow) => {
                       Удалить
                     </button>
                   )}
-                  {isLast && (
+                  {isLast && isSizeAvailable && (
                     <button
                       type="button"
                       className="rounded bg-white px-2 py-1 text-xs text-gray-500 hover:text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ml-3"
