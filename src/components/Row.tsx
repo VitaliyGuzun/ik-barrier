@@ -25,8 +25,8 @@ export const Row = ({model, isLast}: IRow) => {
     <tr>
       <td
         className={classNames(
-          isLast ? 'border-b border-gray-200 w-32' : '',
-          'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-32',
+          isLast ? 'border-b border-gray-200 w-32 text-wrap' : '',
+          'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-24 text-wrap',
         )}
       >
         {model[NAME_KEY]}

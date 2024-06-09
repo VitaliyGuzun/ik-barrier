@@ -49,18 +49,18 @@ export const Table = ({tables}: {tables: ITablesWithIds}) => {
             scope="col"
             className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
           >
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <div className="w-32 text-right">{HEADER[TOTAL_KEY]}</div>
-              <div className="pl-6">
+              <div className="">
                 {total > 0 && (
-                  <>
+                  <div className="flex flex-col items-end gap-1">
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                       Количество: {amount}
                     </span>
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 ml-4">
                       ИТОГО: {total > 0 ? formatPrice(total) : ''}
                     </span>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
