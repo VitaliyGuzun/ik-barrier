@@ -13,6 +13,7 @@ type TableContextType = {
   setValueAmounts: (amounts: Values) => void
   valuePrises: Values
   clearValue: (id: string, index: number) => void
+  removeSize: (id: string, index: number) => void
   addSize: (id: string) => void
 }
 
@@ -41,6 +42,7 @@ const defaultValue = {
   setValueAmounts: ({}) => {},
   valuePrises: {},
   clearValue: () => {},
+  removeSize: () => {},
   addSize: () => {},
 }
 
