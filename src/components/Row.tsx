@@ -41,12 +41,12 @@ export const Row = ({model, isLast}: IRow) => {
       </td>
       <td
         className={classNames(
-          isLast ? 'border-b border-gray-200 w-32' : '',
-          'hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell w-32',
+          isLast ? 'border-b border-gray-200 w-40 text-end' : '',
+          'hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell w-40 text-end',
         )}
       >
         {isSizeAvailable && (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-end">
             {valueSizes.map((_, index) => {
               return (
                 <SizeSelect
