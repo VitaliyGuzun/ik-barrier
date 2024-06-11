@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ik-barrier/static/css/main.f86a8f9a.css",
-    "main.js": "/ik-barrier/static/js/main.99de7d5a.js",
+    "main.css": "/ik-barrier/static/css/main.1e8e3dfa.css",
+    "main.js": "/ik-barrier/static/js/main.f7af716d.js",
     "static/js/453.ae1aa110.chunk.js": "/ik-barrier/static/js/453.ae1aa110.chunk.js",
     "index.html": "/ik-barrier/index.html",
-    "main.f86a8f9a.css.map": "/ik-barrier/static/css/main.f86a8f9a.css.map",
-    "main.99de7d5a.js.map": "/ik-barrier/static/js/main.99de7d5a.js.map",
+    "main.1e8e3dfa.css.map": "/ik-barrier/static/css/main.1e8e3dfa.css.map",
+    "main.f7af716d.js.map": "/ik-barrier/static/js/main.f7af716d.js.map",
     "453.ae1aa110.chunk.js.map": "/ik-barrier/static/js/453.ae1aa110.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f86a8f9a.css",
-    "static/js/main.99de7d5a.js"
+    "static/css/main.1e8e3dfa.css",
+    "static/js/main.f7af716d.js"
   ]
 }
