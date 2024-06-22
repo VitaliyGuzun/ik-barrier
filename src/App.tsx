@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import {Table} from './components/Table'
 import {useAmounts} from './hooks/useAmounts'
 import {usePrises} from './hooks/usePrises'
@@ -8,12 +8,42 @@ import {
   defaultValueSizes,
   defaultValueAmounts,
 } from './store/TableContext'
+import emailjs from '@emailjs/browser'
 import './App.css'
 
 export default function Example() {
   const [valueSizes, setValueSizes] = useState(defaultValueSizes)
   const [valueAmounts, setValueAmounts] = useAmounts(defaultValueAmounts)
   const valuePrises = usePrises(valueSizes, valueAmounts)
+  const form = useRef<HTMLFormElement | null>(null)
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    emailjs
+      .send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID ?? '',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID ?? '',
+        {
+          from_name: 'CLIENT_NAME',
+          to_name: 'Founder of the company',
+          message: `
+            Привет Ника
+          `,
+        },
+        {
+          publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
+        },
+      )
+      .then(
+        () => {
+          console.log('SUCCESS!')
+        },
+        (error) => {
+          console.log('FAILED...', error)
+        },
+      )
+  }
 
   const removeSize = (id: string, index: number) => {
     const modelSizes = valueSizes[id].filter((_, i) => i !== index)
@@ -59,6 +89,10 @@ export default function Example() {
         addSize,
       }}
     >
+      <form ref={form} onSubmit={sendEmail}>
+        <input type="text" />
+        <button type="submit">Отправить</button>
+      </form>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
