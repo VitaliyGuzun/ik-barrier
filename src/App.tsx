@@ -46,6 +46,11 @@ export default function Example() {
     setValueAmounts({...valueAmounts, [id]: [...valueAmounts[id], 0]})
   }
 
+  const clearTable = () => {
+    setValueSizes(defaultValueSizes)
+    setValueAmounts(defaultValueAmounts)
+  }
+
   return (
     <TableContext.Provider
       value={{
@@ -57,6 +62,7 @@ export default function Example() {
         clearValue,
         removeSize,
         addSize,
+        clearTable,
       }}
     >
       <div className="px-4 sm:px-6 lg:px-8">

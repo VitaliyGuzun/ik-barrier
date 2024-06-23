@@ -15,6 +15,7 @@ type TableContextType = {
   clearValue: (id: string, index: number) => void
   removeSize: (id: string, index: number) => void
   addSize: (id: string) => void
+  clearTable: () => void
 }
 
 export const contentWithIds = mapIds(content)
@@ -44,6 +45,7 @@ const defaultValue = {
   clearValue: () => {},
   removeSize: () => {},
   addSize: () => {},
+  clearTable: () => {},
 }
 
 export const TableContext = React.createContext<TableContextType>(defaultValue)

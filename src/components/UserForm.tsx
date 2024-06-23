@@ -1,23 +1,38 @@
-import {useRef} from 'react'
+import {useContext, useRef, useState} from 'react'
 import {useMessageForEmail} from '../hooks/useMessageForEmail'
 import * as api from '../api'
+import {EnvelopeIcon, ArrowPathIcon} from '@heroicons/react/20/solid'
+import {TableContext} from '../store/TableContext'
 
 interface IUserForm {
   toggleUserForm: () => void
+  toggleIsSended: () => void
 }
 
-export const UserForm = ({toggleUserForm}: IUserForm) => {
+export const UserForm = ({toggleUserForm, toggleIsSended}: IUserForm) => {
+  const context = useContext(TableContext)
   const nameRef = useRef<HTMLInputElement>(null)
   const phoneRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
   const message = useMessageForEmail()
+  const [isPending, setIsPending] = useState(false)
 
-  const sendEmail = () => {
+  const sendEmail = async () => {
+    setIsPending(true)
     const name = nameRef.current?.value ?? ''
     const phone = phoneRef.current?.value ?? ''
     const email = emailRef.current?.value ?? ''
     const user = {name, phone, email}
-    api.sendEmail({user, message})
+    try {
+      await api.sendEmail({user, message})
+      setTimeout(toggleIsSended, 0)
+      setTimeout(toggleUserForm, 0)
+      context.clearTable()
+    } catch (error) {
+      console.log('error: ', error)
+    }
+
+    setIsPending(false)
   }
 
   return (
@@ -85,6 +100,8 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
           type="button"
           className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
+          {!isPending && <EnvelopeIcon className="h-5 w-5" />}
+          {isPending && <ArrowPathIcon className="h-5 w-5 animate-spin" />}
           Отправить запрос
         </button>
         <button

@@ -1,4 +1,4 @@
-import {useCallback, useContext, useState} from 'react'
+import {useCallback, useContext, useEffect, useState} from 'react'
 import classNames from 'classnames'
 import {HEADER} from '../constants/content'
 import {
@@ -11,6 +11,7 @@ import {
 } from '../types'
 import {TableContext} from '../store/TableContext'
 import {SendEmailButton} from './SendEmailButton'
+import {SuccessBanner} from './SuccessBanner'
 import {UserForm} from './UserForm'
 import {Row} from './Row'
 
@@ -18,10 +19,25 @@ export const Table = ({tables}: {tables: ITablesWithIds}) => {
   const context = useContext(TableContext)
   const total = context.valuePrises.total[0]
   const [isShowUserForm, setIsShowUserForm] = useState(false)
+  const [isSended, setIsSended] = useState(false)
+
+  useEffect(() => {
+    if (isSended) {
+      setTimeout(() => setIsSended(false), 60000)
+    }
+  }, [isSended])
+
+  useEffect(() => {
+    if (isShowUserForm && isSended) {
+      setIsSended(false)
+    }
+  }, [isShowUserForm, isSended])
 
   const toggleUserForm = useCallback(() => {
     setIsShowUserForm(!isShowUserForm)
   }, [isShowUserForm])
+
+  const toggleIsSended = () => setIsSended(true)
 
   return (
     <table className="min-w-full border-separate border-spacing-0">
@@ -71,7 +87,19 @@ export const Table = ({tables}: {tables: ITablesWithIds}) => {
             className="sticky top-20 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 text-right"
             colSpan={5}
           >
-            <UserForm toggleUserForm={toggleUserForm} />
+            <UserForm
+              toggleUserForm={toggleUserForm}
+              toggleIsSended={toggleIsSended}
+            />
+          </th>
+        </tr>
+        <tr className={classNames({hidden: !isSended})}>
+          <th
+            scope="col"
+            className="sticky top-12 z-10 bg-white bg-opacity-75 text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+            colSpan={5}
+          >
+            <SuccessBanner />
           </th>
         </tr>
       </thead>
