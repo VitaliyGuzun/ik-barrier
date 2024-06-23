@@ -8,6 +8,7 @@ import {
   defaultValueSizes,
   defaultValueAmounts,
 } from './store/TableContext'
+import {useParams} from './hooks'
 import emailjs from '@emailjs/browser'
 import './App.css'
 
@@ -19,30 +20,6 @@ export default function Example() {
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault()
-
-    emailjs
-      .send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID ?? '',
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID ?? '',
-        {
-          from_name: 'CLIENT_NAME',
-          to_name: 'Founder of the company',
-          message: `
-            Привет Ника
-          `,
-        },
-        {
-          publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
-        },
-      )
-      .then(
-        () => {
-          console.log('SUCCESS!')
-        },
-        (error) => {
-          console.log('FAILED...', error)
-        },
-      )
   }
 
   const removeSize = (id: string, index: number) => {

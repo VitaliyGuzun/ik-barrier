@@ -8,14 +8,13 @@ import {
   SIZE_KEY,
   TOTAL_KEY,
 } from '../types'
-import {Row} from './Row'
 import {TableContext} from '../store/TableContext'
-import {formatPrice} from '../utils'
+import {Row} from './Row'
+import {SendEmailButton} from './SendEmailButton'
 
 export const Table = ({tables}: {tables: ITablesWithIds}) => {
   const context = useContext(TableContext)
   const total = context.valuePrises.total[0]
-  const amount = context.valueAmounts.total[0]
 
   return (
     <table className="min-w-full border-separate border-spacing-0">
@@ -51,18 +50,7 @@ export const Table = ({tables}: {tables: ITablesWithIds}) => {
           >
             <div className="flex justify-between items-center">
               <div className="w-32 text-right">{HEADER[TOTAL_KEY]}</div>
-              <div className="">
-                {total > 0 && (
-                  <div className="flex flex-col items-end gap-1">
-                    <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset text-ikbrand-dark bg-ikbrand-light/50 ring-ikbrand/50">
-                      Количество: {amount}
-                    </span>
-                    <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ml-4 text-ikbrand-dark bg-ikbrand-light/50 ring-ikbrand/50">
-                      ИТОГО: {total > 0 ? formatPrice(total) : ''}
-                    </span>
-                  </div>
-                )}
-              </div>
+              <div className="">{total > 0 && <SendEmailButton />}</div>
             </div>
           </th>
         </tr>
