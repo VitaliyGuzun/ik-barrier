@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import {TableContext} from '../store/TableContext'
+import {useParams} from '../hooks/useParams'
 import {formatPrice} from '../utils'
-import {useParams} from '../hooks'
 
 interface ISendEmailButton {
   toggleUserForm: () => void

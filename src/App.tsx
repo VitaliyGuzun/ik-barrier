@@ -8,8 +8,6 @@ import {
   defaultValueSizes,
   defaultValueAmounts,
 } from './store/TableContext'
-import {useParams} from './hooks'
-import emailjs from '@emailjs/browser'
 import './App.css'
 
 export default function Example() {

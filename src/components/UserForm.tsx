@@ -1,4 +1,5 @@
 import {useRef} from 'react'
+import {useMessageForEmail} from '../hooks/useMessageForEmail'
 import * as api from '../api'
 
 interface IUserForm {
@@ -9,13 +10,14 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
   const nameRef = useRef<HTMLInputElement>(null)
   const phoneRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
+  const message = useMessageForEmail()
 
   const sendEmail = () => {
     const name = nameRef.current?.value ?? ''
     const phone = phoneRef.current?.value ?? ''
     const email = emailRef.current?.value ?? ''
     const user = {name, phone, email}
-    api.sendEmail({user, message: ''})
+    api.sendEmail({user, message})
   }
 
   return (
