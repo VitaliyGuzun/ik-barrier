@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react'
+import {useState} from 'react'
 import {Table} from './components/Table'
 import {useAmounts} from './hooks/useAmounts'
 import {usePrises} from './hooks/usePrises'
@@ -14,11 +14,6 @@ export default function Example() {
   const [valueSizes, setValueSizes] = useState(defaultValueSizes)
   const [valueAmounts, setValueAmounts] = useAmounts(defaultValueAmounts)
   const valuePrises = usePrises(valueSizes, valueAmounts)
-  const form = useRef<HTMLFormElement | null>(null)
-
-  const sendEmail = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
 
   const removeSize = (id: string, index: number) => {
     const modelSizes = valueSizes[id].filter((_, i) => i !== index)
@@ -64,10 +59,6 @@ export default function Example() {
         addSize,
       }}
     >
-      <form ref={form} onSubmit={sendEmail}>
-        <input type="text" />
-        <button type="submit">Отправить</button>
-      </form>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">

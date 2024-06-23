@@ -21,8 +21,8 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
   }
 
   return (
-    <div className="flex items-center justify-end gap-8">
-      <div className="flex items-center gap-4">
+    <div className="flex items-center justify-end gap-4">
+      <div className="flex items-center gap-2">
         <label
           htmlFor="name"
           className="block text-sm font-medium leading-6 text-gray-900"
@@ -41,7 +41,7 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <label
           htmlFor="phone"
           className="block text-sm font-medium leading-6 text-gray-900"
@@ -60,7 +60,7 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <label
           htmlFor="email"
           className="block text-sm font-medium leading-6 text-gray-900"
