@@ -21,7 +21,7 @@ export const SendEmailButton = ({toggleUserForm}: ISendEmailButton) => {
             Количество: {amount}
           </span>
           <span className="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ml-4 text-ikbrand-dark bg-ikbrand-light/50 ring-ikbrand/50">
-            ИТОГО: {total > 0 ? formatPrice(total) : ''}
+            Итого: {total > 0 ? formatPrice(total) : ''}
           </span>
         </>
       )}
@@ -31,7 +31,7 @@ export const SendEmailButton = ({toggleUserForm}: ISendEmailButton) => {
           type="button"
           className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          ИТОГО: {formatPrice(total)}, {amount} шт.
+          Итого: {formatPrice(total)}, {amount} шт.
           <br />
           Запросить расчет
         </button>

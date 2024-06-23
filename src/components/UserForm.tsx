@@ -1,10 +1,23 @@
-import {sendEmail} from '../api'
+import {useRef} from 'react'
+import * as api from '../api'
 
 interface IUserForm {
   toggleUserForm: () => void
 }
 
 export const UserForm = ({toggleUserForm}: IUserForm) => {
+  const nameRef = useRef<HTMLInputElement>(null)
+  const phoneRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+
+  const sendEmail = () => {
+    const name = nameRef.current?.value ?? ''
+    const phone = phoneRef.current?.value ?? ''
+    const email = emailRef.current?.value ?? ''
+    const user = {name, phone, email}
+    api.sendEmail({user, message: ''})
+  }
+
   return (
     <div className="flex items-center justify-end gap-8">
       <div className="flex items-center gap-4">
@@ -16,6 +29,7 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
         </label>
         <div>
           <input
+            ref={nameRef}
             type="text"
             name="name"
             id="phone"
@@ -34,6 +48,7 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
         </label>
         <div>
           <input
+            ref={phoneRef}
             type="text"
             name="phone"
             id="phone"
@@ -52,6 +67,7 @@ export const UserForm = ({toggleUserForm}: IUserForm) => {
         </label>
         <div>
           <input
+            ref={emailRef}
             type="email"
             name="email"
             id="email"
