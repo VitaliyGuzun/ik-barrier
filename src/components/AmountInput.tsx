@@ -19,14 +19,14 @@ export const AmountInput = ({id, index}: IAmountInput) => {
 
   return (
     <div className="max-w-24">
-      <label htmlFor="email" className="sr-only">
+      <label htmlFor="amount" className="sr-only">
         Количество
       </label>
       <input
         onChange={onChange}
         value={valueAmounts[index] || ''}
         type="number"
-        name="number"
+        name="amount"
         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-ikbrand-light focus:ring-ikbrand-light focus:ring-ikbrand-light sm:text-sm sm:leading-6 pl-3 outline-none"
         placeholder="0"
       />

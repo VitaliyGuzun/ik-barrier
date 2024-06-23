@@ -2,9 +2,12 @@ import {useContext} from 'react'
 import {TableContext} from '../store/TableContext'
 import {formatPrice} from '../utils'
 import {useParams} from '../hooks'
-import {sendEmail} from '../api'
 
-export const SendEmailButton = () => {
+interface ISendEmailButton {
+  toggleUserForm: () => void
+}
+
+export const SendEmailButton = ({toggleUserForm}: ISendEmailButton) => {
   const context = useContext(TableContext)
   const total = context.valuePrises.total[0]
   const amount = context.valueAmounts.total[0]
@@ -24,7 +27,7 @@ export const SendEmailButton = () => {
       )}
       {isSendToEmail && (
         <button
-          onClick={sendEmail}
+          onClick={toggleUserForm}
           type="button"
           className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >

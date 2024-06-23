@@ -1,4 +1,5 @@
-import {useContext} from 'react'
+import {useCallback, useContext, useState} from 'react'
+import classNames from 'classnames'
 import {HEADER} from '../constants/content'
 import {
   AMOUNT_KEY,
@@ -9,12 +10,18 @@ import {
   TOTAL_KEY,
 } from '../types'
 import {TableContext} from '../store/TableContext'
-import {Row} from './Row'
 import {SendEmailButton} from './SendEmailButton'
+import {UserForm} from './UserForm'
+import {Row} from './Row'
 
 export const Table = ({tables}: {tables: ITablesWithIds}) => {
   const context = useContext(TableContext)
   const total = context.valuePrises.total[0]
+  const [isShowUserForm, setIsShowUserForm] = useState(false)
+
+  const toggleUserForm = useCallback(() => {
+    setIsShowUserForm(!isShowUserForm)
+  }, [isShowUserForm])
 
   return (
     <table className="min-w-full border-separate border-spacing-0">
@@ -50,8 +57,21 @@ export const Table = ({tables}: {tables: ITablesWithIds}) => {
           >
             <div className="flex justify-between items-center">
               <div className="w-32 text-right">{HEADER[TOTAL_KEY]}</div>
-              <div className="">{total > 0 && <SendEmailButton />}</div>
+              <div className="">
+                {total > 0 && (
+                  <SendEmailButton toggleUserForm={toggleUserForm} />
+                )}
+              </div>
             </div>
+          </th>
+        </tr>
+        <tr className={classNames({hidden: !isShowUserForm})}>
+          <th
+            scope="col"
+            className="sticky top-20 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 text-right"
+            colSpan={5}
+          >
+            <UserForm toggleUserForm={toggleUserForm} />
           </th>
         </tr>
       </thead>
