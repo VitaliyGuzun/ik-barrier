@@ -10,7 +10,7 @@ import {
   TOTAL_KEY,
 } from '../types'
 import {TableContext} from '../store/TableContext'
-import {SendEmailButton} from './SendEmailButton'
+import {RequestOfferButton} from './RequestOfferButton'
 import {SuccessBanner} from './SuccessBanner'
 import {UserForm} from './UserForm'
 import {Row} from './Row'
@@ -75,7 +75,9 @@ export const Table = ({tables}: {tables: ITablesWithIds}) => {
               <div className="w-32 text-right">{HEADER[TOTAL_KEY]}</div>
               <div className="">
                 {total > 0 && (
-                  <SendEmailButton toggleUserForm={toggleUserForm} />
+                  <RequestOfferButton
+                    openUserForm={() => setIsShowUserForm(true)}
+                  />
                 )}
               </div>
             </div>
