@@ -26,7 +26,7 @@ export const Row = ({model, isLast}: IRow) => {
       <td
         className={classNames(
           isLast ? 'border-b border-gray-200 w-32 text-wrap' : '',
-          'whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-24 text-wrap',
+          'whitespace-nowrap py-4 pl-3 pr-3 text-sm font-medium text-gray-900 w-24 text-wrap',
         )}
       >
         {model[NAME_KEY]}
@@ -34,7 +34,7 @@ export const Row = ({model, isLast}: IRow) => {
       <td
         className={classNames(
           isLast ? 'border-b border-gray-200 text-wrap max-w-40' : '',
-          'hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell text-wrap max-w-40',
+          'hidden whitespace-nowrap px-3 py-2 text-sm text-gray-500 sm:table-cell text-wrap max-w-40',
         )}
       >
         {model[DESCRIPTION_KEY]}
@@ -42,7 +42,7 @@ export const Row = ({model, isLast}: IRow) => {
       <td
         className={classNames(
           isLast ? 'border-b border-gray-200 w-40 text-end' : '',
-          'hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell w-40 text-end',
+          'whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-40 text-end',
         )}
       >
         {isSizeAvailable && (
