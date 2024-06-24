@@ -36,7 +36,7 @@ export const UserForm = ({toggleUserForm, toggleIsSended}: IUserForm) => {
   }
 
   return (
-    <div className="flex items-center justify-end gap-4">
+    <div className="flex items-center justify-center gap-4">
       <div className="flex items-center gap-2">
         <label
           htmlFor="name"
@@ -98,7 +98,7 @@ export const UserForm = ({toggleUserForm, toggleIsSended}: IUserForm) => {
         <button
           onClick={sendEmail}
           type="button"
-          className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="inline-flex items-center gap-x-1.5 rounded-md bg-ikbrand px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-ikbrand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ikbrand-dark"
         >
           {!isPending && <EnvelopeIcon className="h-5 w-5" />}
           {isPending && <ArrowPathIcon className="h-5 w-5 animate-spin" />}
